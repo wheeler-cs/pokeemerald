@@ -1,13 +1,13 @@
 # GBA rom header
-TITLE       := POKEMON EMER
-GAME_CODE   := BPEE
-MAKER_CODE  := 01
+TITLE       := POKEMON BRYL
+GAME_CODE   := PKBR
+MAKER_CODE  := 00
 REVISION    := 0
 MODERN      ?= 0
 KEEP_TEMPS  ?= 0
 
 # `File name`.gba ('_modern' will be appended to the modern builds)
-FILE_NAME := pokeemerald
+FILE_NAME := PokeBeryl
 BUILD_DIR := build
 
 # Builds the ROM using a modern compiler
