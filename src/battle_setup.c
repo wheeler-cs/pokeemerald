@@ -548,6 +548,49 @@ void BattleSetup_StartLegendaryBattle(void)
     TryUpdateGymLeaderRematchFromWild();
 }
 
+/** @brief Initialize a battle using custom parameters
+ * 
+ * @note Requires calling `setwildbattle SPECIES, LEVEL` beforehand
+ * 
+ */
+void BattleSetup_StartCustomEncounter(void)
+{
+    u8 pp;
+    u32 i;
+
+    // Prepare player field view for battle
+    LockPlayerFieldControls();
+    FreezeObjectEvents();
+    StopPlayerAvatar();
+    gMain.savedCallback = CB2_EndWildBattle;
+    gBattleTypeFlags = BATTLE_TYPE_LEGENDARY;
+
+    // Set up encounter data
+    if(gSpecialVar_0x8004 != ITEM_NONE)
+        SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gSpecialVar_0x8004);
+    if(gSpecialVar_0x8005 != MOVE_NONE)
+        SetMonData(&gEnemyParty[0], MON_DATA_MOVE1, &gSpecialVar_0x8005);
+    if(gSpecialVar_0x8006 != MOVE_NONE)
+        SetMonData(&gEnemyParty[0], MON_DATA_MOVE2, &gSpecialVar_0x8006);
+    if(gSpecialVar_0x8007 != MOVE_NONE)
+        SetMonData(&gEnemyParty[0], MON_DATA_MOVE3, &gSpecialVar_0x8007);
+    if(gSpecialVar_0x8008 != MOVE_NONE)
+        SetMonData(&gEnemyParty[0], MON_DATA_MOVE4, &gSpecialVar_0x8008);
+    // Make sure moves all have max PP
+    for(i = 0; i < MAX_MON_MOVES; i++)
+    {
+        pp = CalculatePPWithBonus(GetMonData(&gEnemyParty[0], MON_DATA_MOVE1 + i), 0, i);
+        SetMonData(&gEnemyParty[0], MON_DATA_PP1 + i, &pp);
+    }
+
+    // Start battle
+    CreateBattleStartTask(B_TRANSITION_WAVE, MUS_RG_VS_LEGEND);
+    IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
+    IncrementGameStat(GAME_STAT_WILD_BATTLES);
+    IncrementDailyWildBattles();
+    TryUpdateGymLeaderRematchFromWild();
+}
+
 void StartGroudonKyogreBattle(void)
 {
     LockPlayerFieldControls();

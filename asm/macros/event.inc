@@ -1952,3 +1952,14 @@
 	setvar VAR_0x8006, \item
 	special CreateEnemyEventMon
 	.endm
+
+	@ Creates a custom Pokémon encounter
+	@ Requires calling `setwildbattle SPECIES, LEVEL` beforehand
+	.macro docustomencounter item=ITEM_NONE, specmove1=MOVE_NONE, specmove2=MOVE_NONE, specmove3=MOVE_NONE, specmove4=MOVE_NONE
+	setvar VAR_0x8004, \item
+	setvar VAR_0x8005, \specmove1
+	setvar VAR_0x8006, \specmove2
+	setvar VAR_0x8007, \specmove3
+	setvar VAR_0x8008, \specmove4
+	special BattleSetup_StartCustomEncounter
+	.endm
