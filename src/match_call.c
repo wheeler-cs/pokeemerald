@@ -2114,5 +2114,7 @@ void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
 
 void LoadAlertCallWindowGfx(u32 windowId, u32 destOffset, u32 paletteId)
 {
-
+    u8 bg = GetWindowAttribute(windowId, WINDOW_BG);
+    LoadBgTiles(bg, sMatchCallWindow_Gfx, 0x100, destOffset);
+    LoadPalette(sMatchCallWindow_Pal, BG_PLTT_ID(paletteId), sizeof(sMatchCallWindow_Pal));
 }
