@@ -2099,6 +2099,7 @@ void BufferPokedexRatingForMatchCall(u8 *destStr)
     Free(buffer);
 }
 
+// BOOKMARK
 void LoadMatchCallWindowGfx(u32 windowId, u32 destOffset, u32 paletteId)
 {
     u8 bg = GetWindowAttribute(windowId, WINDOW_BG);
@@ -2109,4 +2110,9 @@ void LoadMatchCallWindowGfx(u32 windowId, u32 destOffset, u32 paletteId)
 void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
 {
     DrawMatchCallTextBoxBorder_Internal(windowId, tileOffset, paletteId);
+}
+
+void LoadAlertCallWindowGfx(u32 windowId, u32 destOffset, u32 paletteId)
+{
+
 }

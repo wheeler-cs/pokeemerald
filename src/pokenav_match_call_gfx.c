@@ -1079,6 +1079,7 @@ static void UpdateWindowsToShowCheckPage(struct Pokenav_MatchCallGfx *gfx)
     CopyWindowToVram(gfx->infoBoxWindowId, COPYWIN_GFX);
 }
 
+// BOOKMARK
 static void LoadCallWindowAndFade(struct Pokenav_MatchCallGfx *gfx)
 {
     gfx->msgBoxWindowId = AddWindow(&sCallMsgBoxWindowTemplate);
